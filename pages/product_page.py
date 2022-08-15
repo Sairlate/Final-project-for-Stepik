@@ -1,7 +1,6 @@
 from .base_page import BasePage
 from .locators import ProductPageLocators
 from selenium.common.exceptions import NoAlertPresentException
-from selenium.webdriver.common.by import By
 import math
 
 
@@ -15,11 +14,11 @@ class ProductPage(BasePage):
             print("There is no add to cart button")
 
     def product_name_matches_with_added_product(self):
-        added_product = self.browser.find_element(By.CSS_SELECTOR, "#messages strong").text
+        added_product = self.browser.find_element(*ProductPageLocators.ADDED_PRODUCT).text
         self.browser.find_element(*ProductPageLocators.BASKET_BUTTON).click()
         self.browser.implicitly_wait(10)
-        cart_product = self.browser.find_element(By.CSS_SELECTOR, "div h3 a").text
-        assert cart_product == added_product, "Another product has been added to the cart"
+        basket_product = self.browser.find_element(*ProductPageLocators.BASKET_PRODUCT).text
+        assert basket_product == added_product, "Another product has been added to the cart"
 
     def product_price_matches_with_cart_price(self):
         product = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
