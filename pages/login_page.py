@@ -1,6 +1,5 @@
 from .base_page import BasePage
 from .locators import LoginPageLocators
-from selenium.webdriver.common.by import By
 
 
 class LoginPage(BasePage):
@@ -19,7 +18,13 @@ class LoginPage(BasePage):
         assert self.browser.find_element(*LoginPageLocators.REGISTER_FORM), "There is no register form"
 
     def register_new_user(self, email, password):
-        self.browser.find_element(By.ID, "id_registration-email").send_keys(email)
-        self.browser.find_element(By.ID, "id_registration-password1").send_keys(password)
-        self.browser.find_element(By.ID, "id_registration-password2").send_keys(password)
-        self.browser.find_element(By.CSS_SELECTOR, "[name='registration_submit']").click()
+        email_field = self.browser.find_element(*LoginPageLocators.REGISTER_EMAIL)
+        email_field.send_keys(email)
+        password_field1 = self.browser.find_element(*LoginPageLocators.REGISTER_PASSWORD1)
+        password_field1.send_keys(password)
+        password_field2 = self.browser.find_element(*LoginPageLocators.REGISTER_PASSWORD2)
+        password_field2.send_keys(password)
+        submit_button = self.browser.find_element(*LoginPageLocators.REGISTER_BUTTON)
+        submit_button.click()
+        assert self.is_element_present(*LoginPageLocators.REGISTER_SUCCESS_ALERT), \
+            "Registration new user has been failed"

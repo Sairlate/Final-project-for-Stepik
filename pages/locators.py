@@ -9,10 +9,11 @@ class LoginPageLocators():
     LOGIN_URL = "http://selenium1py.pythonanywhere.com/accounts/login/"
     LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")
     REGISTER_FORM = (By.CSS_SELECTOR, "#register_form")
-    REGISTRATION_FIELD = (By.ID, "id_registration-email")
-    PASSWORD_FIELD1 = (By.ID, "id_registration-password1")
-    PASSWORD_FIELD2 = (By.ID, "id_registration-password2")
-    SUBMIT_BUTTON = (By.CSS_SELECTOR, "[name='registration_submit']")
+    REGISTER_EMAIL = (By.CSS_SELECTOR, "#id_registration-email")
+    REGISTER_PASSWORD1 = (By.CSS_SELECTOR, "#id_registration-password1")
+    REGISTER_PASSWORD2 = (By.CSS_SELECTOR, "#id_registration-password2")
+    REGISTER_BUTTON = (By.CSS_SELECTOR, "#register_form > button")
+    REGISTER_SUCCESS_ALERT = (By.CSS_SELECTOR, "div.alert-success > div")
 
 
 class ProductPageLocators():
